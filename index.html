@@ -1,2 +1,26 @@
-<button onclick="downloadPdf()">PDF with your code</button>
-<button onclick="downloadPdfUpdated()">PDF with updated code</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate PDF Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js"></script>
+</head>
+<body>
+    <h1>Generate PDF Example</h1>
+    <button onclick="generatePDF()">Generate PDF</button>
+
+    <script>
+        function generatePDF() {
+            var docDefinition = {
+                content: [
+                    'This is an example PDF document generated using pdfmake.js!'
+                ]
+            };
+
+            pdfmake.createPdf(docDefinition).download('example.pdf');
+        }
+    </script>
+</body>
+</html>
