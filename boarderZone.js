@@ -1,32 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDF Generator</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
-<script src="boarderZone.js" defer></script>
-</head>
-<body>
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("generateBtn").addEventListener("click", generatePDF);
+});
 
-<h2>PDF Generator</h2>
+function generatePDF() {
+    var name = document.getElementById("name").value;
+    var birth = document.getElementById("birth").value;
+    var passport = document.getElementById("passport").value;
+    var house = document.getElementById("house").value;
+    var tel = document.getElementById("tel").value;
+    var email = document.getElementById("email").value;
 
-<form id="pdfForm">
-  <label for="name">Name:</label><br>
-  <input type="text" id="name" name="name"><br>
-  <label for="birth">Date of Birth:</label><br>
-  <input type="text" id="birth" name="birth"><br>
-  <label for="passport">Passport:</label><br>
-  <input type="text" id="passport" name="passport"><br>
-  <label for="house">Place of Residence:</label><br>
-  <input type="text" id="house" name="house"><br>
-  <label for="tel">Telephone:</label><br>
-  <input type="text" id="tel" name="tel"><br>
-  <label for="email">Email:</label><br>
-  <input type="email" id="email" name="email"><br><br>
-  <button type="button" id="generateBtn">Generate PDF</button>
-</form>
+    var dd = {
+        content: [
+            {
+                text: 'Про надання дозволу\n\n',
+                style: 'header'
+            },
+            {
+                text: [
+                    'У зв’язку з набранням чинності змін до Постанови Кабінету Міністрів України від 27 липня 1998 р. № 1147 «Про прикордонний режим» та враховуючи Закон України «Про державний кордон» прошу надати дозвіл моїй дитині (дозвіл фізичним особам віком до 18 років надається за зверненням одного з батьків, або законного представника) на проведення топографо-геодезичних робіт (рибальство\збирання грибів, ягід\проходження по туристичному\вело- маршруту\проживання) в наступній локації: за межами с. Оноківці, урочище Дубки (у формі обов’зкове поле-назва найближчого населеного пункту\урочища)\n\n',
+                    'Згідно ст. 24 Закону України «Про державний кордон» про себе зазначаю наступне:\n\n',
+                    'Прізвище, ім’я, по батькові – ' + name + '\n',
+                    'Дата народження – ' + birth + ' р.\n',
+                    'Громадянство (підданство) особи, яка перебуватиме у межах прикордонної смуги – громадянин України\n',
+                    'Реквізити документа, що посвідчує її особу – ' + passport + '\n',
+                    'Місце проживання (місце перебування) – ' + house + '\n\n',
+                    'Засоби зв’язку (одного з батьків)– тел.' + tel + ' e-mail: ' + email + '\n',
+                    'Вид дозволу – проведення топографо-геодезичних робіт (рибальство\збирання грибів, ягід\проходження по туристичному\вело- маршруту\проживання)\n',
+                    'Мета отримання дозволу- проведення топографо-геодезичних робіт (рибальство\збирання грибів, ягід\проходження по туристичному\вело- маршруту\проживання)\n',
+                    'Правові підстави для отримання дозволу – згідно чинного законодавства України.\n',
+                    'У разі відмови у наданні дозволу прошу надати обґрунтовану відповідь.\n',
+                    'У разі надходження цього звернення до некомпетентного органу прошу направити його за належністю згідно вимог закону України «Про звернення громадян»\n\n',
+                    'До звернення додаю копію паспорту та витяг про зареєстроване місце проживання (відповідних сторінок паспорту).\n',
+                    'Про прийняте рішення прошу повідомити мене на електронну адресу: ' + email + '\n',
+                    '____.______-. 2024 рік ______________ підпис'
+                ]
+            }
+        ],
+        styles: {
+            header: {
+                fontSize: 18,
+                bold: true
+            }
+        }
+    };
 
-</body>
-</html>
+    pdfMake.createPdf(dd).open();
+}
