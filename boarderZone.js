@@ -67,7 +67,7 @@ function generatePDF() {
                 {
                     image: base64Img,
                     fit: [100, 100],
-                    pageBreak: 'after'
+                    // pageBreak: 'after'
                 },
             ],
             styles: {
