@@ -13,8 +13,21 @@ function generatePDF() {
     var dd = {
         content: [
             {
+                text: [
+                    '94 Чопський прикордонний загін\n',
+                    'Державної прикордонної служби України\n',
+                     name + '\n',
+                     house + '\n',
+                     tel + '\n',
+                     email + '\n'
+                                    ],
+                style: "whom"
+            },            
+                     
+            {
                 text: 'Про надання дозволу\n\n',
-                style: 'header'
+                style: 'header',
+                alignment: 'center' // Align the text to the center
             },
             {
                 text: [
@@ -34,15 +47,31 @@ function generatePDF() {
                     'До звернення додаю копію паспорту та витяг про зареєстроване місце проживання (відповідних сторінок паспорту).\n',
                     'Про прийняте рішення прошу повідомити мене на електронну адресу: ' + email + '\n',
                     '____.______-. 2024 рік ______________ підпис'
-                ]
-            }
+                ],
+                style: "simpletext"
+            },
+            {
+                image: 'sign.jpg',
+                fit: [100, 100],
+                alignment: 'center', // Align the image to the center
+                pageBreak: 'after'
+            },
         ],
         styles: {
             header: {
-                fontSize: 18,
+                fontSize: 14,
                 bold: true
+            },
+            simpletext: {
+                fontSize: 12,
+            
+            },
+            whom: {
+                fontSize: 12,
+                alignment: 'right'
             }
-        }
+        },
+        
     };
 
     pdfMake.createPdf(dd).open();
